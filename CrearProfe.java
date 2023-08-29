@@ -14,7 +14,8 @@ import javax.swing.JOptionPane;
 public class CrearProfe extends javax.swing.JFrame {
      public CrearProfe() {
         initComponents();
-             this.setLocationRelativeTo(null);
+     this.setLocationRelativeTo(null);
+     this.setResizable(false);
 
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -35,11 +36,13 @@ public class CrearProfe extends javax.swing.JFrame {
         txt_ApellidoNuevoProfe = new javax.swing.JTextField();
         txt_NombreNuevoProfe = new javax.swing.JTextField();
         txt_CodigoNuevoProfe = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(102, 255, 102));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Agregar nuevo profesor");
 
@@ -73,10 +76,29 @@ public class CrearProfe extends javax.swing.JFrame {
             }
         });
 
+        txt_ContrasenaNuevoProfe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_ContrasenaNuevoProfeActionPerformed(evt);
+            }
+        });
+
         BarraGeneros.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "m", "f" }));
         BarraGeneros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BarraGenerosActionPerformed(evt);
+            }
+        });
+
+        txt_CodigoNuevoProfe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_CodigoNuevoProfeActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Regresar al menu anterior");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -88,23 +110,27 @@ public class CrearProfe extends javax.swing.JFrame {
                 .addGap(68, 68, 68)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(AgregarProfesorBoton)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_ContrasenaNuevoProfe)
-                            .addComponent(BarraGeneros, 0, 333, Short.MAX_VALUE)
-                            .addComponent(txt_CorreoNuevoProfe)
-                            .addComponent(txt_ApellidoNuevoProfe)
-                            .addComponent(txt_NombreNuevoProfe)
-                            .addComponent(txt_CodigoNuevoProfe))))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(AgregarProfesorBoton)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txt_ContrasenaNuevoProfe)
+                                .addComponent(BarraGeneros, 0, 333, Short.MAX_VALUE)
+                                .addComponent(txt_CorreoNuevoProfe)
+                                .addComponent(txt_ApellidoNuevoProfe)
+                                .addComponent(txt_NombreNuevoProfe)
+                                .addComponent(txt_CodigoNuevoProfe)))))
                 .addContainerGap(76, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -137,7 +163,9 @@ public class CrearProfe extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(BarraGeneros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
-                .addComponent(AgregarProfesorBoton)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AgregarProfesorBoton)
+                    .addComponent(jButton1))
                 .addContainerGap(95, Short.MAX_VALUE))
         );
 
@@ -175,6 +203,7 @@ public class CrearProfe extends javax.swing.JFrame {
     String NombreProfeNuevo = txt_NombreNuevoProfe.getText();
     String ApellidoProfeNuevo = txt_ApellidoNuevoProfe.getText();
     String CorreoProfeNuevo = txt_CorreoNuevoProfe.getText();
+    String ContrasenaProfeNuevo = txt_ContrasenaNuevoProfe.getText();
     String GeneroNuevoProfe = (String) BarraGeneros.getSelectedItem();
 
     // Verificar si el código ya existe en el vector
@@ -196,6 +225,7 @@ public class CrearProfe extends javax.swing.JFrame {
         nuevoProfesor.add(ApellidoProfeNuevo);
         nuevoProfesor.add(CorreoProfeNuevo);
         nuevoProfesor.add(GeneroNuevoProfe);
+        nuevoProfesor.add(ContrasenaProfeNuevo);
 
         // Agregar el nuevo profesor al vectorDeDatos
         vectorDeDatos.add(nuevoProfesor);
@@ -211,6 +241,20 @@ public class CrearProfe extends javax.swing.JFrame {
         this.dispose();
     }
     }//GEN-LAST:event_AgregarProfesorBotonMouseClicked
+
+    private void txt_ContrasenaNuevoProfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ContrasenaNuevoProfeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_ContrasenaNuevoProfeActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+              this.dispose();
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txt_CodigoNuevoProfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_CodigoNuevoProfeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_CodigoNuevoProfeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -250,6 +294,7 @@ public class CrearProfe extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AgregarProfesorBoton;
     private javax.swing.JComboBox<String> BarraGeneros;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

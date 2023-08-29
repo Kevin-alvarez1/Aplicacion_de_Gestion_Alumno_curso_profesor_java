@@ -4,6 +4,8 @@
  */
 package ipc1_2s2023_proyecto1_202203038;
 
+import java.util.Vector;
+
 /**
  *
  * @author Player
@@ -16,6 +18,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public MenuPrincipal() {
         initComponents();
              this.setLocationRelativeTo(null);
+     this.setResizable(false);
 
     }
 
@@ -47,6 +50,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         EstudianteLoginBoton.setText("Estudiante");
 
         ProfesorLoginBoton.setText("Profesor");
+        ProfesorLoginBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProfesorLoginBotonActionPerformed(evt);
+            }
+        });
 
         AdminLoginBoton.setText("Administrador");
         AdminLoginBoton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -114,6 +122,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         System.exit(0);
 
     }//GEN-LAST:event_CerrarProgramaBotonActionPerformed
+
+    private void ProfesorLoginBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfesorLoginBotonActionPerformed
+        // TODO add your handling code here
+               Vector<Vector<String>> vectorDeDatos = CrearProfe.vectorDatos;
+ 
+    }//GEN-LAST:event_ProfesorLoginBotonActionPerformed
 
     /**
      * @param args the command line arguments

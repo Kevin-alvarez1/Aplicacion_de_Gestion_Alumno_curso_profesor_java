@@ -23,6 +23,7 @@ public class ActualizarProfesor extends javax.swing.JFrame {
     public ActualizarProfesor() {
         initComponents();
         this.setLocationRelativeTo(null);
+     this.setResizable(false);
 
     }
  
@@ -61,6 +62,7 @@ public class ActualizarProfesor extends javax.swing.JFrame {
         CorreoActualizadoProfe = new javax.swing.JTextField();
         ContrasenaActualizadoProfe = new javax.swing.JTextField();
         GeneroActualizadoProfe = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,31 +110,40 @@ public class ActualizarProfesor extends javax.swing.JFrame {
 
         GeneroActualizadoProfe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "f", "m"}));
 
+        jButton1.setText("Regresar al menu anterior");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ActualizarProfeBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(CodigoActualizadoProfe)
-                            .addComponent(NombreActualizadoProfe)
-                            .addComponent(ApellidoActualizadoProfe)
-                            .addComponent(CorreoActualizadoProfe)
-                            .addComponent(ContrasenaActualizadoProfe)
-                            .addComponent(GeneroActualizadoProfe, 0, 377, Short.MAX_VALUE))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ActualizarProfeBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel7))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(CodigoActualizadoProfe)
+                                .addComponent(NombreActualizadoProfe)
+                                .addComponent(ApellidoActualizadoProfe)
+                                .addComponent(CorreoActualizadoProfe)
+                                .addComponent(ContrasenaActualizadoProfe)
+                                .addComponent(GeneroActualizadoProfe, 0, 377, Short.MAX_VALUE))))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -166,7 +177,9 @@ public class ActualizarProfesor extends javax.swing.JFrame {
                     .addComponent(GeneroActualizadoProfe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addComponent(ActualizarProfeBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -225,13 +238,18 @@ if (codigoEncontrado) {
     this.dispose();
 } else {
     JOptionPane.showMessageDialog(null, "No existe el código ingresado", "Error", JOptionPane.ERROR_MESSAGE);
-    this.dispose();
 }
     }//GEN-LAST:event_ActualizarProfeBotonMouseClicked
 
     private void ApellidoActualizadoProfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApellidoActualizadoProfeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ApellidoActualizadoProfeActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+      this.dispose();
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,6 +264,7 @@ if (codigoEncontrado) {
     private javax.swing.JTextField CorreoActualizadoProfe;
     private javax.swing.JComboBox<String> GeneroActualizadoProfe;
     private javax.swing.JTextField NombreActualizadoProfe;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
