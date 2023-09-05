@@ -17,6 +17,7 @@ import javax.swing.JLabel;
  */
 public class ModuloProfesorFrame extends javax.swing.JFrame {
     Vector<Vector<String>> vectorDeDatos = CrearProfe.vectorDatos;
+
     private String usuarioIngresado; 
     /**
      * Creates new form ModuloProfesorFrame
@@ -35,8 +36,8 @@ public class ModuloProfesorFrame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        ActualizarDatosProfeBoton = new javax.swing.JButton();
+        RegresarMenu = new javax.swing.JButton();
         ActualizarBotonesBoton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -48,12 +49,17 @@ public class ModuloProfesorFrame extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Cursos Asignados");
 
-        jButton1.setText("Actualizar Datos");
-
-        jButton2.setText("Regresar al menu principal");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        ActualizarDatosProfeBoton.setText("Actualizar Datos");
+        ActualizarDatosProfeBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                ActualizarDatosProfeBotonActionPerformed(evt);
+            }
+        });
+
+        RegresarMenu.setText("Regresar al menu principal");
+        RegresarMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegresarMenuActionPerformed(evt);
             }
         });
 
@@ -68,17 +74,19 @@ public class ModuloProfesorFrame extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(ActualizarBotonesBoton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(RegresarMenu))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 376, Short.MAX_VALUE)
+                        .addComponent(ActualizarDatosProfeBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(23, 23, 23))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(ActualizarBotonesBoton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 418, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,12 +94,14 @@ public class ModuloProfesorFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1))
+                        .addComponent(ActualizarDatosProfeBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 396, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ActualizarBotonesBoton)
-                    .addComponent(jButton2))
+                    .addComponent(RegresarMenu))
                 .addGap(24, 24, 24))
         );
 
@@ -111,44 +121,49 @@ public class ModuloProfesorFrame extends javax.swing.JFrame {
 
    
 public void crearBotonesSegunRepeticion(Vector<Vector<String>> vectorParaCrearBotones) {
-    int coordeandaX = 0;
-    int coordeandaY = 50;
+    int coordeandaX = 30;
+    int coordeandaY = 60;
 
     // Iterar sobre vectorParaCrearBotones para crear los botones
     for (int i = 0; i < vectorParaCrearBotones.size(); i++) {
         Vector<String> datosCurso = vectorParaCrearBotones.get(i);
-        String nombreCurso = datosCurso.get(1); // Nombre del curso en la primera posición del vector
 
-        // Contar cuántas veces se repite ese valor (nombreCurso)
-        int cantidadRepeticiones = contarRepeticiones(vectorParaCrearBotones, nombreCurso);
+        // Verificar si la posición 6 contiene "Online"
+        if (datosCurso.size() >= 7 && "Online".equals(datosCurso.get(6))) {
+            String nombreCurso = datosCurso.get(1); // Nombre del curso en la primera posición del vector
 
-        // Crear un botón para cada repetición
-        for (int j = 0; j < cantidadRepeticiones; j++) {
-            JButton botonCurso = new JButton(nombreCurso);
-            JLabel label = new JLabel("50: estudiantes");
-            botonCurso.setBounds(coordeandaX, coordeandaY, 90, 30);
+            // Contar cuántas veces se repite ese valor (nombreCurso)
+            int cantidadRepeticiones = contarRepeticiones(vectorParaCrearBotones, nombreCurso);
 
-            // Agregar una acción al presionar el botón
-            botonCurso.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    // Lo que quieres que se haga al presionar el botón
-                    System.out.println("Hola");
+            // Crear un botón para cada repetición
+            for (int j = 0; j < cantidadRepeticiones; j++) {
+                JButton botonCurso = new JButton(nombreCurso);
+                JLabel label = new JLabel("50: estudiantes");
+                botonCurso.setBounds(coordeandaX, coordeandaY, 90, 30);
+
+                // Agregar una acción al presionar el botón
+                botonCurso.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                         CursoPlantillaModuloProfe ApareceP = new CursoPlantillaModuloProfe();
+                         ApareceP.setVisible(true);
+                   
+                    }
+                });
+
+                label.setBounds(coordeandaX, coordeandaY + 30, 100, 30);
+
+                // Agregar el botón y la etiqueta al panel o contenedor donde desees mostrarlos.
+                this.add(botonCurso);
+                this.add(label);
+
+                // Ajusta las coordenadas X e Y para la próxima iteración
+                coordeandaX += 100;
+
+                // Comprueba si coordeandaX supera 550 y ajusta las coordenadas
+                if (coordeandaX >= 550) {
+                    coordeandaX = 0;
+                    coordeandaY += 40;
                 }
-            });
-
-            label.setBounds(coordeandaX, coordeandaY + 30, 100, 30);
-
-            // Agregar el botón y la etiqueta al panel o contenedor donde desees mostrarlos.
-            this.add(botonCurso);
-            this.add(label);
-
-            // Ajusta las coordenadas X e Y para la próxima iteración
-            coordeandaX += 100;
-
-            // Comprueba si coordeandaX supera 550 y ajusta las coordenadas
-            if (coordeandaX >= 550) {
-                coordeandaX = 0;
-                coordeandaY += 40;
             }
         }
     }
@@ -168,17 +183,31 @@ private int contarRepeticiones(Vector<Vector<String>> vectorParaCrearBotones, St
 }
 
     private void ActualizarBotonesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarBotonesBotonActionPerformed
-    
-        // TODO add your handling code here:
+    // TODO add your handling code here:
         crearBotonesSegunRepeticion(vectorParaCrearBotones);
 
     }//GEN-LAST:event_ActualizarBotonesBotonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void RegresarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarMenuActionPerformed
+  // Buscar coincidencias en vectorParaCrearBotones
+     for (Vector<String> filaCurso : vectorParaCrearBotones) {
+        if (filaCurso.size() >= 6 && "Online".equals(filaCurso.get(6))) {
+            filaCurso.set(6, "Offline");
+        }
+    }
+
+   
+        this.dispose();
+
+    }//GEN-LAST:event_RegresarMenuActionPerformed
+
+    private void ActualizarDatosProfeBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarDatosProfeBotonActionPerformed
         // TODO add your handling code here:
+    MenuPrincipal ApareceMenuP = new MenuPrincipal();
+    ApareceMenuP.setVisible(true);
     this.dispose();
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_ActualizarDatosProfeBotonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,8 +247,8 @@ private int contarRepeticiones(Vector<Vector<String>> vectorParaCrearBotones, St
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ActualizarBotonesBoton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton ActualizarDatosProfeBoton;
+    private javax.swing.JButton RegresarMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

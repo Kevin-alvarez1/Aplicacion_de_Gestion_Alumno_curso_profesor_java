@@ -154,6 +154,7 @@ public class LoginAdmin extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null, "Inicio de sesion Efectuado correctamente");
             ModuloAdmin Aparece = new ModuloAdmin();
             Aparece.setVisible(true);
+              this.dispose();
               } else{
             JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
              }

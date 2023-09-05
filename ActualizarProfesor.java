@@ -68,6 +68,7 @@ public class ActualizarProfesor extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 153, 153));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Actualizar datos profesor");
 
@@ -108,6 +109,12 @@ public class ActualizarProfesor extends javax.swing.JFrame {
             }
         });
 
+        ContrasenaActualizadoProfe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContrasenaActualizadoProfeActionPerformed(evt);
+            }
+        });
+
         GeneroActualizadoProfe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "f", "m"}));
 
         jButton1.setText("Regresar al menu anterior");
@@ -125,7 +132,6 @@ public class ActualizarProfesor extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(ActualizarProfeBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,7 +148,8 @@ public class ActualizarProfesor extends javax.swing.JFrame {
                                 .addComponent(ApellidoActualizadoProfe)
                                 .addComponent(CorreoActualizadoProfe)
                                 .addComponent(ContrasenaActualizadoProfe)
-                                .addComponent(GeneroActualizadoProfe, 0, 377, Short.MAX_VALUE))))
+                                .addComponent(GeneroActualizadoProfe, 0, 377, Short.MAX_VALUE)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
@@ -177,7 +184,7 @@ public class ActualizarProfesor extends javax.swing.JFrame {
                     .addComponent(GeneroActualizadoProfe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addComponent(ActualizarProfeBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -202,51 +209,53 @@ public class ActualizarProfesor extends javax.swing.JFrame {
     }//GEN-LAST:event_ActualizarProfeBotonActionPerformed
 
     private void ActualizarProfeBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ActualizarProfeBotonMouseClicked
- // Obtener el vector de datos desde CrearProfe
-Vector<Vector<String>> vectorDeDatos = CrearProfe.vectorDatos;
+    // Obtener el vector de datos desde CrearProfe
+       Vector<Vector<String>> vectorDeDatos = CrearProfe.vectorDatos;
 
-String CodigoNuevoProfe = CodigoActualizadoProfe.getText();
-String NombreProfeNuevo = NombreActualizadoProfe.getText();
-String ApellidoProfeNuevo = ApellidoActualizadoProfe.getText();
-String CorreoProfeNuevo = CorreoActualizadoProfe.getText();
-String ContraseñaProfeNuevo = ContrasenaActualizadoProfe.getText();
-String GeneroNuevoProfe = (String) GeneroActualizadoProfe.getSelectedItem();
+       String CodigoNuevoProfe = CodigoActualizadoProfe.getText();
+       String NombreProfeNuevo = NombreActualizadoProfe.getText();
+       String ApellidoProfeNuevo = ApellidoActualizadoProfe.getText();
+       String CorreoProfeNuevo = CorreoActualizadoProfe.getText();
+       String ContraseñaProfeNuevo = ContrasenaActualizadoProfe.getText();
+       String GeneroNuevoProfe = (String) GeneroActualizadoProfe.getSelectedItem();
 
-boolean codigoEncontrado = false;
+       boolean codigoEncontrado = false;
 
-// Actualizar los datos en el mismo vectorDeDatos
-for (Vector<String> fila : vectorDeDatos) {
-    // Verifica que la fila tenga al menos 5 elementos y que ninguno sea nulo
-    if (fila.size() >= 5 &&
-        fila.get(0) != null &&
-        fila.get(1) != null &&
-        fila.get(2) != null &&
-        fila.get(3) != null &&
-        fila.get(4) != null &&
-        fila.get(0).equals(CodigoNuevoProfe)) {
-        fila.set(1, NombreProfeNuevo);
-        fila.set(2, ApellidoProfeNuevo);
-        fila.set(3, CorreoProfeNuevo);
-        fila.set(4, GeneroNuevoProfe);
-        codigoEncontrado = true;
-        break; // Si encontramos una coincidencia, salimos del bucle
-    }
-}
+       // Actualizar los datos en el mismo vectorDeDatos
+       for (Vector<String> fila : vectorDeDatos) {
+           // Verifica que la fila tenga al menos 5 elementos y que ninguno sea nulo
+           if (fila.size() >= 5 &&
+               fila.get(0) != null &&
+               fila.get(1) != null &&
+               fila.get(2) != null &&
+               fila.get(3) != null &&
+               fila.get(4) != null &&
+               fila.get(0).equals(CodigoNuevoProfe)) {
+               fila.set(1, NombreProfeNuevo);
+               fila.set(2, ApellidoProfeNuevo);
+               fila.set(3, CorreoProfeNuevo);
+               fila.set(4, GeneroNuevoProfe); // Colocar el género en la posición 5
+               fila.set(5, ContraseñaProfeNuevo); // Colocar la contraseña en la posición 4
 
-if (codigoEncontrado) {
-    // Limpiar los campos de texto después de guardar
-    CodigoActualizadoProfe.setText("");
-    NombreActualizadoProfe.setText("");
-    ApellidoActualizadoProfe.setText("");
-    CorreoActualizadoProfe.setText("");
-    ContrasenaActualizadoProfe.setText("");
-    GeneroActualizadoProfe.setSelectedIndex(0);
+               codigoEncontrado = true;
+               break; // Si encontramos una coincidencia, salimos del bucle
+           }
+       }
 
-    JOptionPane.showMessageDialog(null, "Datos actualizados correctamente");
-    this.dispose();
-} else {
-    JOptionPane.showMessageDialog(null, "No existe el código ingresado", "Error", JOptionPane.ERROR_MESSAGE);
-}
+       if (codigoEncontrado) {
+           // Limpiar los campos de texto después de guardar
+           CodigoActualizadoProfe.setText("");
+           NombreActualizadoProfe.setText("");
+           ApellidoActualizadoProfe.setText("");
+           CorreoActualizadoProfe.setText("");
+           ContrasenaActualizadoProfe.setText("");
+           GeneroActualizadoProfe.setSelectedIndex(0);
+
+           JOptionPane.showMessageDialog(null, "Datos actualizados correctamente");
+           this.dispose();
+       } else {
+           JOptionPane.showMessageDialog(null, "No existe el código ingresado", "Error", JOptionPane.ERROR_MESSAGE);
+       }
     }//GEN-LAST:event_ActualizarProfeBotonMouseClicked
 
     private void ApellidoActualizadoProfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApellidoActualizadoProfeActionPerformed
@@ -258,6 +267,10 @@ if (codigoEncontrado) {
       this.dispose();
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void ContrasenaActualizadoProfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContrasenaActualizadoProfeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ContrasenaActualizadoProfeActionPerformed
 
     /**
      * @param args the command line arguments

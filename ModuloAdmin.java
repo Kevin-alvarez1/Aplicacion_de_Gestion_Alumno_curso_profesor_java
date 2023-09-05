@@ -26,7 +26,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import java.io.Serializable;
 /**
@@ -461,22 +460,19 @@ public class CrearHTMLProfes implements Serializable{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelgrafica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(CrearProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(CargaMasivaProfe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(ActualizarMatriz, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(BorrarProfesor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(ExportarProfesPDF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(RegresarMenuP)))
+                            .addComponent(RegresarMenuP)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(CrearProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(CargaMasivaProfe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(ActualizarMatriz, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(BorrarProfesor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(ExportarProfesPDF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 121, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -1039,8 +1035,9 @@ private void cargarDatosDesdeCSV(File archivoCSV) {
 
     private void RegresarMenuPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarMenuPActionPerformed
         // TODO add your handling code here:
-        this.dispose();
-
+     MenuPrincipal ApareceMenuP = new MenuPrincipal();
+    ApareceMenuP.setVisible(true);
+this.dispose();
     }//GEN-LAST:event_RegresarMenuPActionPerformed
 
     private void ExportarProfesPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportarProfesPDFActionPerformed
@@ -1187,6 +1184,8 @@ private void cargarDatosDesdeCSV(File archivoCSV) {
 
     private void RegresarMenuBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarMenuBotonActionPerformed
   // TODO add your handling code here:
+   MenuPrincipal ApareceMenuP = new MenuPrincipal();
+    ApareceMenuP.setVisible(true);
               this.dispose();
 
     }//GEN-LAST:event_RegresarMenuBotonActionPerformed
@@ -1444,7 +1443,9 @@ String mensaje = null;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-                this.dispose();
+ MenuPrincipal ApareceMenuP = new MenuPrincipal();
+    ApareceMenuP.setVisible(true);
+        this.dispose();
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

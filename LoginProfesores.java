@@ -146,7 +146,7 @@ public static Vector<Vector<String>> vectorParaCrearBotones = new Vector<>();
 
     private void RegresarMenuBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarMenuBotonActionPerformed
     // TODO add your handling code here:
-        this.dispose();
+    this.dispose();
 
     }//GEN-LAST:event_RegresarMenuBotonActionPerformed
 
@@ -182,21 +182,48 @@ public void VerificarContrasena() {
         // Inicio de sesión exitoso
         JOptionPane.showMessageDialog(null, "Inicio de sesión efectuado correctamente");
 
-
         // Buscar coincidencias en vectorCursos y agregar los datos correspondientes
         for (Vector<String> filaCurso : vectorCursos) {
             if (filaCurso.size() >= 5 && filaCurso.get(4) != null && filaCurso.get(4).equals(NombreCompletoProfeModulo)) {
                 // Agregar los datos de filaCurso a vectorParaCrearBotones
-                vectorParaCrearBotones.add(new Vector<>(filaCurso));
+                Vector<String> cursoParaBoton = new Vector<>(filaCurso);
+                cursoParaBoton.add(usuarioIngresado);
+                vectorParaCrearBotones.add(cursoParaBoton);
             }
         }
-         ModuloProfesorFrame Aparece33 = new ModuloProfesorFrame();
+
+       
+    cambiarEstadoSesionOnline();
+        ModuloProfesorFrame Aparece33 = new ModuloProfesorFrame();
         Aparece33.setVisible(true);
     } else {
         // Inicio de sesión fallido
         JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
+
+public void cambiarEstadoSesionOnline() {
+    // Buscar coincidencias en vectorParaCrearBotones
+    for (Vector<String> filaCurso : vectorParaCrearBotones) {
+        if (filaCurso.size() >= 6 && filaCurso.get(5) != null && filaCurso.get(5).equals(usuarioIngresado)) {
+            filaCurso.add(6,"Online"); // Agregar "Online" en la posición 6 del vector
+        }
+    }
+/* el vector vectorParaCrearBotones esta dividido en estas posiciones:
+    codigo curso = 0, nombre curso = 1, creditos del curso = 2,
+    cantidad de alumnos = 3, nombre completo profesor = 4, correo profesor = 5, estado online/ofline = 6
+    */
+    for (Vector<String> elemento : vectorParaCrearBotones) {
+        for (String valor : elemento) {
+            System.out.print(valor + " "); // Mostrar cada valor separado por un espacio
+        }
+        System.out.println(); // Nueva línea para separar cada elemento del vector
+    }
+    
+}
+
+
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

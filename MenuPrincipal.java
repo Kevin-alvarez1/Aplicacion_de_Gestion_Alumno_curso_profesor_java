@@ -115,6 +115,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
          LoginAdmin ApareceMenuAdmin = new LoginAdmin();
         ApareceMenuAdmin.setVisible(true);
+        this.dispose();
+
     }//GEN-LAST:event_AdminLoginBotonMouseClicked
 
     private void CerrarProgramaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarProgramaBotonActionPerformed
@@ -128,7 +130,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                Vector<Vector<String>> vectorDeDatos = CrearProfe.vectorDatos;
                 LoginProfesores Aparece = new LoginProfesores();
                       Aparece.setVisible(true);
-           
+           this.dispose();
+
     }//GEN-LAST:event_ProfesorLoginBotonActionPerformed
 
     /**
