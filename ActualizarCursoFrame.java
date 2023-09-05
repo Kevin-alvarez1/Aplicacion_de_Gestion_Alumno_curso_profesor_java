@@ -158,7 +158,7 @@ public class ActualizarCursoFrame extends javax.swing.JFrame {
 
     private void ActualizarCursoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarCursoBotonActionPerformed
         // TODO add your handling code here:
-    Vector<Vector<String>> vectorCursos = CrearCursoFrame.vectorCursos;
+ Vector<Vector<String>> vectorCursos = CrearCursoFrame.vectorCursos;
 
 String CodigoNuevoCurso = CodigoActualizadoCurso.getText();
 String NombreCursoNuevo = NombreActualizadoCurso.getText();
@@ -167,14 +167,22 @@ String CursoActualizadoProfe = (String) ProfesorActualizadoCurso.getSelectedItem
 String alumnoActualizado = "";
 boolean codigoEncontrado = false;
 
-// Actualizar los datos en el mismo vectorDeDatos
+// Actualizar los datos en el mismo vectorCursos
 for (Vector<String> fila : vectorCursos) {
-    if (fila.get(0).equals(CodigoNuevoCurso)) {
+    // Verifica que la fila tenga al menos 5 elementos y que ninguno sea nulo
+    if (fila.size() >= 5 &&
+        fila.get(0) != null &&
+        fila.get(1) != null &&
+        fila.get(2) != null &&
+        fila.get(3) != null &&
+        fila.get(4) != null &&
+        fila.get(0).equals(CodigoNuevoCurso)) {
         fila.set(1, NombreCursoNuevo);
         fila.set(2, CreditosCursoNuevo);
         fila.set(3, alumnoActualizado);
         fila.set(4, CursoActualizadoProfe);
         codigoEncontrado = true;
+        break; // Si encontramos una coincidencia, salimos del bucle
     }
 }
 
@@ -189,7 +197,6 @@ if (codigoEncontrado) {
     this.dispose();
 } else {
     JOptionPane.showMessageDialog(null, "No existe el código ingresado", "Error", JOptionPane.ERROR_MESSAGE);
-    
 }
     }//GEN-LAST:event_ActualizarCursoBotonActionPerformed
 public void obtenerNombreCompletoProfesor() {

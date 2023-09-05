@@ -10,8 +10,9 @@ import javax.swing.JFrame;
 public class IPC1_2S2023_Proyecto1_202203038 {
 
 
-    public static void main(String[] args) {
-  
+    public static void main (String[] args) {
+        Appdata Aparece3 = new Appdata();
+
         MenuPrincipal Aparece = new MenuPrincipal();
         Aparece.setVisible(true);
            

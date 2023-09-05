@@ -17,7 +17,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal() {
         initComponents();
-             this.setLocationRelativeTo(null);
+     this.setLocationRelativeTo(null);
      this.setResizable(false);
 
     }
@@ -126,7 +126,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void ProfesorLoginBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfesorLoginBotonActionPerformed
         // TODO add your handling code here
                Vector<Vector<String>> vectorDeDatos = CrearProfe.vectorDatos;
- 
+                LoginProfesores Aparece = new LoginProfesores();
+                      Aparece.setVisible(true);
+           
     }//GEN-LAST:event_ProfesorLoginBotonActionPerformed
 
     /**

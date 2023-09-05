@@ -216,12 +216,20 @@ boolean codigoEncontrado = false;
 
 // Actualizar los datos en el mismo vectorDeDatos
 for (Vector<String> fila : vectorDeDatos) {
-    if (fila.get(0).equals(CodigoNuevoProfe)) {
+    // Verifica que la fila tenga al menos 5 elementos y que ninguno sea nulo
+    if (fila.size() >= 5 &&
+        fila.get(0) != null &&
+        fila.get(1) != null &&
+        fila.get(2) != null &&
+        fila.get(3) != null &&
+        fila.get(4) != null &&
+        fila.get(0).equals(CodigoNuevoProfe)) {
         fila.set(1, NombreProfeNuevo);
         fila.set(2, ApellidoProfeNuevo);
         fila.set(3, CorreoProfeNuevo);
         fila.set(4, GeneroNuevoProfe);
         codigoEncontrado = true;
+        break; // Si encontramos una coincidencia, salimos del bucle
     }
 }
 

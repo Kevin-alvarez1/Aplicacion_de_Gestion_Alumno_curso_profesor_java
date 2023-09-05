@@ -4,6 +4,7 @@
  */
 package ipc1_2s2023_proyecto1_202203038;
 
+import static ipc1_2s2023_proyecto1_202203038.CrearProfe.vectorDatos;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -16,6 +17,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.text.DecimalFormat;
 import java.util.Vector;
 import javax.swing.JButton;
@@ -26,12 +28,12 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
-
+import java.io.Serializable;
 /**
  *
  * @author Player
  */
-public class ModuloAdmin extends javax.swing.JFrame {
+public class ModuloAdmin extends javax.swing.JFrame implements Serializable  {
 JFileChooser seleccionarProfe = new JFileChooser();
 File CargaProfes;
 JFileChooser seleccionarCurso = new JFileChooser();
@@ -42,6 +44,7 @@ File CargaAlumno;
 FileInputStream entrada;
 FileOutputStream salida;
 
+
     /**
      * Creates new form ModuloAdmin
      */
@@ -49,17 +52,16 @@ FileOutputStream salida;
         initComponents();
      this.setLocationRelativeTo(null);
        this.setResizable(false);
-
     }
-       
 
 boolean GraficaP = false;
 boolean Grafica = false;
 
-public static Vector<Vector<String>> vectorAlumnos = new Vector<>();
+public  static Vector<Vector<String>> vectorAlumnos = new Vector<>();
 
 public void paint(Graphics g) {
-      Vector<Vector<String>> vectorDeDatos = CrearProfe.vectorDatos;
+    
+         Vector<Vector<String>> vectorDeDatos = CrearProfe.vectorDatos;   
     super.paintComponents(g);
     
     if (Grafica==true) {
@@ -156,12 +158,12 @@ public void paint(Graphics g) {
         g.drawString("Hombres", 685, 348);
         g.drawString(" "+numeroConDos2DecimalesHombre+"%", 755, 348);
 
-    
+
     }
 }
    
     public String AbrirCargaProfes(File CargaProfes){
-        Vector<Vector<String>> vectorDeDatos = CrearProfe.vectorDatos;
+        Vector<Vector<String>> vectorDeDatos = CrearProfe.vectorDatos;   
        String documento = "";
     try {
         BufferedReader br = new BufferedReader(new FileReader(CargaProfes));
@@ -199,8 +201,9 @@ public void paint(Graphics g) {
             mensaje = "Error al guardar el archivo: " + e.getMessage();
         }
         return mensaje;
-}
-public class CrearHTMLProfes {
+
+    }
+public class CrearHTMLProfes implements Serializable{
 
     public static void crearHTML(Vector<Vector<String>> datos, String nombreArchivo) {
         try {
@@ -222,6 +225,7 @@ public class CrearHTMLProfes {
             escritor.write("<th>Apellido</th>");
             escritor.write("<th>Correo</th>");
             escritor.write("<th>Género</th>");
+            escritor.write("<th>Contraseña</th>");            
             escritor.write("</tr>");
             
             // Agregar filas de datos
@@ -243,11 +247,12 @@ public class CrearHTMLProfes {
         } catch (IOException e) {
             System.err.println("Error al crear el archivo HTML: " + e.getMessage());
         }
+        
     }
 
     public static void main(String[] args) {
         // Ejemplo de cómo usar el método crearHTML
-        Vector<Vector<String>> vectorDeDatos = new Vector<Vector<String>>();
+         Vector<Vector<String>> vectorDeDatos = CrearProfe.vectorDatos;   
         // Llena vectorDeDatos con datos desde donde sea necesario
 
         String nombreArchivo = "ListadoProfes.html";
@@ -306,6 +311,7 @@ public class CrearHTMLProfes {
         ActualizarTablaAlumnos = new javax.swing.JButton();
         LimpiarTablaAlumnos = new javax.swing.JButton();
         ActivarGraficaAlumnos = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -642,13 +648,13 @@ public class CrearHTMLProfes {
                         .addGap(40, 40, 40)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ActualizarCursoBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(CrearCursoBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(CrearCursoBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(ActualizarCursoBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(EliminarCursoBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(CargaMasivaCursoBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)))
+                                    .addComponent(CargaMasivaCursoBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                                    .addComponent(EliminarCursoBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(RegresarMenuBoton)
                                 .addGap(0, 0, Short.MAX_VALUE))
@@ -761,6 +767,13 @@ public class CrearHTMLProfes {
             }
         });
 
+        jButton1.setText("Regresar al menu anterior");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -769,41 +782,46 @@ public class CrearHTMLProfes {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(CargaMasivaAlumnosBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ExportarAlumnoHTMLBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(ActualizarTablaAlumnos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LimpiarTablaAlumnos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ActivarGraficaAlumnos)))
+                        .addComponent(ActivarGraficaAlumnos))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ExportarAlumnoHTMLBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CargaMasivaAlumnosBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1))))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(CargaMasivaAlumnosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel5)
                         .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(CargaMasivaAlumnosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(ExportarAlumnoHTMLBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton1)
+                        .addGap(15, 15, 15)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(ActivarGraficaAlumnos, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(ActualizarTablaAlumnos, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                        .addComponent(LimpiarTablaAlumnos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(ActualizarTablaAlumnos, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(LimpiarTablaAlumnos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -825,7 +843,7 @@ public class CrearHTMLProfes {
     
 private void llenarTabla() {
     // Obtener el vector de datos desde CrearProfe
-    Vector<Vector<String>> vectorDeDatos = CrearProfe.vectorDatos;
+    Vector<Vector<String>> vectorDeDatos = CrearProfe.vectorDatos;   
 
     // Obtener el modelo de la tabla
     DefaultTableModel modeloTabla = (DefaultTableModel) TablaProfesoresP.getModel();
@@ -846,11 +864,12 @@ private void llenarTabla() {
             modeloTabla.addRow(fila.toArray());
         }
     }
+
     }
 private void llenarTablaCurso() {
     // Obtener el vector de datos desde CrearProfe
     Vector<Vector<String>> vectorCursos = CrearCursoFrame.vectorCursos;
-    Vector<Vector<String>> vectorDeDatos = CrearProfe.vectorDatos;
+    Vector<Vector<String>> vectorDeDatos = CrearProfe.vectorDatos;   
 
     // Obtener el modelo de la tabla
     DefaultTableModel modeloTabla2 = (DefaultTableModel) ListadoOficialCurso.getModel();
@@ -896,13 +915,15 @@ private String obtenerNombreCompletoProfesor(Vector<String> filaDatos) {
         String nombre = filaDatos.get(1);
         String apellido = filaDatos.get(2);
         return nombre + " " + apellido;
-    }
+    }    
     return "";
+    
 }
 
 public static void limpiarTabla(JTable tabla) {
     DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
     modelo.setRowCount(0); // Elimina todas las filas de la tabla
+
 }
 
 
@@ -936,7 +957,7 @@ public static void limpiarTabla(JTable tabla) {
     }//GEN-LAST:event_ActualizarLaTablaMouseClicked
 public void borrarProfesor(String codigoBorrarProfe) {
     // Obtener el vector de datos desde CrearProfe
-    Vector<Vector<String>> vectorDeDatos = CrearProfe.vectorDatos;
+         Vector<Vector<String>> vectorDeDatos = CrearProfe.vectorDatos;   
 
     // Recorrer el vector en busca del código
     for (Vector<String> fila : vectorDeDatos) {
@@ -960,7 +981,9 @@ public void borrarProfesor(String codigoBorrarProfe) {
     private void ActualizarMatrizMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ActualizarMatrizMouseClicked
         // TODO add your handling code here:
      ActualizarProfesor ApareceMenuP = new ActualizarProfesor();
-            ApareceMenuP.setVisible(true);    
+    
+     ApareceMenuP.setVisible(true);
+
     }//GEN-LAST:event_ActualizarMatrizMouseClicked
 
 private void cargarDatosDesdeCSV(File archivoCSV) {
@@ -995,7 +1018,6 @@ private void cargarDatosDesdeCSV(File archivoCSV) {
            }
         }
         
-      
         
     }//GEN-LAST:event_CargaMasivaProfeMouseClicked
 
@@ -1012,24 +1034,26 @@ private void cargarDatosDesdeCSV(File archivoCSV) {
         // TODO add your handling code here:
       BorrarProfeframe ApareceELiminar = new BorrarProfeframe();
             ApareceELiminar.setVisible(true);     
+
     }//GEN-LAST:event_BorrarProfesorActionPerformed
 
     private void RegresarMenuPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarMenuPActionPerformed
         // TODO add your handling code here:
-      this.dispose();
+        this.dispose();
 
     }//GEN-LAST:event_RegresarMenuPActionPerformed
 
     private void ExportarProfesPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportarProfesPDFActionPerformed
         // TODO add your handling code here:
     // Obtener el vector de datos desde donde sea necesario
-    Vector<Vector<String>> vectorDeDatos = CrearProfe.vectorDatos;
+    Vector<Vector<String>> vectorDeDatos = CrearProfe.vectorDatos;   
 
     // Nombre del archivo HTML a generar
     String nombreArchivo = "ListadoProfes.html";
 
     // Llamar al método para crear el archivo HTML
     CrearHTMLProfes.crearHTML(vectorDeDatos, nombreArchivo);
+
     }//GEN-LAST:event_ExportarProfesPDFActionPerformed
 
     private void BotonGraficaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGraficaActionPerformed
@@ -1040,14 +1064,17 @@ private void cargarDatosDesdeCSV(File archivoCSV) {
     GraficaP = false;
     Grafica = true; // Desactiva la primera gráfica si es necesario
     repaint();
+
     }//GEN-LAST:event_BotonGraficaMouseClicked
 
     private void CrearCursoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearCursoBotonActionPerformed
                CrearCursoFrame Aparece3 = new CrearCursoFrame();
                Aparece3.setVisible(true);
+               
     }//GEN-LAST:event_CrearCursoBotonActionPerformed
    public String AbrirCargaCursos(File CargaCurso){
-    Vector<Vector<String>> vectorCursos = CrearCursoFrame.vectorCursos;
+
+       Vector<Vector<String>> vectorCursos = CrearCursoFrame.vectorCursos;
        String documento2 = "";
     try {
         BufferedReader br = new BufferedReader(new FileReader(CargaCurso));
@@ -1088,9 +1115,10 @@ private void cargarDatosDesdeCSV(File archivoCSV) {
     } catch (IOException ex) {
         JOptionPane.showMessageDialog(this, "Error al leer el archivo CSV.", "Error", JOptionPane.ERROR_MESSAGE);
     }
+    
 }
     private void CargaMasivaCursoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargaMasivaCursoBotonActionPerformed
-                 // TODO add your handling code here:     
+              // TODO add your handling code here:     
     Vector<Vector<String>> vectorCursos = CrearCursoFrame.vectorCursos;
 
         if(seleccionarCurso.showDialog(null,"Abrir")==JFileChooser.APPROVE_OPTION){
@@ -1111,19 +1139,19 @@ private void cargarDatosDesdeCSV(File archivoCSV) {
     }//GEN-LAST:event_CargaMasivaCursoBotonActionPerformed
 
     private void ActualizarCursoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarCursoBotonActionPerformed
-        // TODO add your handling code here:
+    // TODO add your handling code here:
           ActualizarCursoFrame Aparece = new ActualizarCursoFrame();
           Aparece.setVisible(true);    
     }//GEN-LAST:event_ActualizarCursoBotonActionPerformed
 
     private void EliminarCursoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarCursoBotonActionPerformed
-        // TODO add your handling code here:
+   // TODO add your handling code here:
            BorrarCursoFrame Aparece = new BorrarCursoFrame();
           Aparece.setVisible(true);  
     }//GEN-LAST:event_EliminarCursoBotonActionPerformed
 
     private void ActualizarTablaCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarTablaCursosActionPerformed
-        // TODO add your handling code here:
+    // TODO add your handling code here:
     Vector<Vector<String>> vectorCursos = CrearCursoFrame.vectorCursos;
     
     llenarTablaCurso();
@@ -1135,7 +1163,7 @@ private void cargarDatosDesdeCSV(File archivoCSV) {
  
     
     public String GuardarCargaCurso(File CargaCurso, String documento){
-        String mensaje = null;
+  String mensaje = null;
         try {
             FileWriter escritor = new FileWriter(CargaCurso);
             escritor.write(documento);
@@ -1158,14 +1186,14 @@ private void cargarDatosDesdeCSV(File archivoCSV) {
     }//GEN-LAST:event_LimpiarTablaCursosActionPerformed
 
     private void RegresarMenuBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarMenuBotonActionPerformed
-        // TODO add your handling code here:
+  // TODO add your handling code here:
               this.dispose();
 
     }//GEN-LAST:event_RegresarMenuBotonActionPerformed
-public class CrearHTMLCurso {
+public class CrearHTMLCurso implements Serializable {
 
     public static void crearHTMLCurso(Vector<Vector<String>> vectorCursos, String nombreArchivo3) {
-        try {
+try {
             FileWriter escritor3 = new FileWriter(nombreArchivo3);
 
             escritor3.write("<html>");
@@ -1217,7 +1245,7 @@ public class CrearHTMLCurso {
     }
 }
     private void ExportarHTMLCursoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportarHTMLCursoBotonActionPerformed
-        // TODO add your handling code here:
+// TODO add your handling code here:
           // Obtener el vector de datos desde donde sea necesario
     Vector<Vector<String>> vectorCursos = CrearCursoFrame.vectorCursos;
 
@@ -1228,7 +1256,7 @@ public class CrearHTMLCurso {
     CrearHTMLCurso.crearHTMLCurso(vectorCursos, nombreArchivo);
     }//GEN-LAST:event_ExportarHTMLCursoBotonActionPerformed
  public String AbrirCargaAlumnos(File CargaAlumno){
-     Vector<Vector<String>> vectorAlumnos = ModuloAdmin.vectorAlumnos;
+Vector<Vector<String>> vectorAlumnos = ModuloAdmin.vectorAlumnos;
        String documento3 = "";
     try {
         BufferedReader br = new BufferedReader(new FileReader(CargaAlumno));
@@ -1254,7 +1282,7 @@ public class CrearHTMLCurso {
     return documento3;
         }
     private void cargarDatosDesdeCSVAlumnos(File archivoCSV) {
-    DefaultTableModel modelo = (DefaultTableModel) AlumnosTabla.getModel();
+DefaultTableModel modelo = (DefaultTableModel) AlumnosTabla.getModel();
     modelo.setRowCount(0); // Limpiamos todas las filas existentes en la tabla
     
     try (BufferedReader br = new BufferedReader(new FileReader(archivoCSV))) {
@@ -1271,7 +1299,7 @@ public class CrearHTMLCurso {
     }
 }
      private void llenarTablaAlumnos() {
-    // Obtener el vector de datos desde CrearProfe
+// Obtener el vector de datos desde CrearProfe
      Vector<Vector<String>> vectorAlumnos = ModuloAdmin.vectorAlumnos;
 
     // Obtener el modelo de la tabla
@@ -1296,7 +1324,7 @@ public class CrearHTMLCurso {
     }
     private void CargaMasivaAlumnosBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargaMasivaAlumnosBotonActionPerformed
         // TODO add your handling code here:
-     Vector<Vector<String>> vectorAlumnos = ModuloAdmin.vectorAlumnos;
+Vector<Vector<String>> vectorAlumnos = ModuloAdmin.vectorAlumnos;
 
         if(seleccionarAlumno.showDialog(null,"Abrir")==JFileChooser.APPROVE_OPTION){
            CargaAlumno=seleccionarAlumno.getSelectedFile();
@@ -1317,24 +1345,24 @@ public class CrearHTMLCurso {
 
     private void LimpiarTablaAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimpiarTablaAlumnosActionPerformed
         // TODO add your handling code here:
-    limpiarTabla(AlumnosTabla); 
+limpiarTabla(AlumnosTabla); 
 
     }//GEN-LAST:event_LimpiarTablaAlumnosActionPerformed
 
     private void ActualizarTablaAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarTablaAlumnosActionPerformed
         // TODO add your handling code here:
-    Vector<Vector<String>> vectorAlumnos = ModuloAdmin.vectorAlumnos;
+Vector<Vector<String>> vectorAlumnos = ModuloAdmin.vectorAlumnos;
     llenarTablaAlumnos();
     }//GEN-LAST:event_ActualizarTablaAlumnosActionPerformed
  
     
     private void ActivarGraficaAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActivarGraficaAlumnosActionPerformed
         // TODO add your handling code here:
-    GraficaP = true;
+GraficaP = true;
     Grafica = false; // Desactiva la primera gráfica si es necesario
     repaint();
     }//GEN-LAST:event_ActivarGraficaAlumnosActionPerformed
-public class CrearHTMLAlumno {
+public class CrearHTMLAlumno implements Serializable {
 
     public static void crearHTMLAlumno(Vector<Vector<String>> vectorAlumnos, String nombreArchivo4) {
         try {
@@ -1356,6 +1384,7 @@ public class CrearHTMLAlumno {
             escritor34.write("<th>Apellido</th>");
             escritor34.write("<th>Correo</th>");
             escritor34.write("<th>Genero</th>");
+            escritor34.write("<th>Contraseña</th>");            
             escritor34.write("</tr>");
             
             // Agregar filas de datos
@@ -1389,7 +1418,7 @@ public class CrearHTMLAlumno {
     }
 }
   public String GuardarCargaAlumno(File CargaAlumno, String documento){
-        String mensaje = null;
+String mensaje = null;
         try {
             FileWriter escritor = new FileWriter(CargaAlumno);
             escritor.write(documento);
@@ -1403,7 +1432,7 @@ public class CrearHTMLAlumno {
 }
     private void ExportarAlumnoHTMLBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportarAlumnoHTMLBotonActionPerformed
         // TODO add your handling code here:
-         // Obtener el vector de datos desde donde sea necesario
+ // Obtener el vector de datos desde donde sea necesario
     Vector<Vector<String>> vectorAlumnos = ModuloAdmin.vectorAlumnos;
 
     // Nombre del archivo HTML a generar
@@ -1412,6 +1441,12 @@ public class CrearHTMLAlumno {
     // Llamar al método para crear el archivo HTML
     CrearHTMLAlumno.crearHTMLAlumno(vectorAlumnos, nombreArchivo);       
     }//GEN-LAST:event_ExportarAlumnoHTMLBotonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+                this.dispose();
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     public static void main(String args[]) {
@@ -1474,6 +1509,7 @@ public class CrearHTMLAlumno {
     private javax.swing.JButton RegresarMenuP;
     private javax.swing.JScrollPane TablaProfesoresMostrar;
     private javax.swing.JTable TablaProfesoresP;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

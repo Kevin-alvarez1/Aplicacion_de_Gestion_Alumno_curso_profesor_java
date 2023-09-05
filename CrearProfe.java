@@ -6,7 +6,6 @@ package ipc1_2s2023_proyecto1_202203038;
 
 import java.util.Vector;
 import javax.swing.JOptionPane;
-
 /**
  *
  * @author Player
@@ -195,8 +194,6 @@ public class CrearProfe extends javax.swing.JFrame {
     }//GEN-LAST:event_BarraGenerosActionPerformed
 
     private void AgregarProfesorBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarProfesorBotonMouseClicked
-// Obtener el vector de datos desde CrearProfe
-    Vector<Vector<String>> vectorDeDatos = CrearProfe.vectorDatos;
 
     // Obtener los datos ingresados por el usuario
     String CodigoNuevoProfe = txt_CodigoNuevoProfe.getText();
@@ -208,7 +205,7 @@ public class CrearProfe extends javax.swing.JFrame {
 
     // Verificar si el código ya existe en el vector
     boolean codigoExistente = false;
-    for (Vector<String> fila : vectorDeDatos) {
+    for (Vector<String> fila : vectorDatos) {
         if (fila.get(0) != null && fila.get(0).equals(CodigoNuevoProfe)) {
             codigoExistente = true;
             break;
@@ -228,7 +225,7 @@ public class CrearProfe extends javax.swing.JFrame {
         nuevoProfesor.add(ContrasenaProfeNuevo);
 
         // Agregar el nuevo profesor al vectorDeDatos
-        vectorDeDatos.add(nuevoProfesor);
+        vectorDatos.add(nuevoProfesor);
 
         // Limpiar los campos de texto después de guardar
         txt_CodigoNuevoProfe.setText("");
@@ -240,6 +237,7 @@ public class CrearProfe extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Profesor registrado correctamente");
         this.dispose();
     }
+
     }//GEN-LAST:event_AgregarProfesorBotonMouseClicked
 
     private void txt_ContrasenaNuevoProfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_ContrasenaNuevoProfeActionPerformed
