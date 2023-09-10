@@ -55,6 +55,7 @@ FileOutputStream salida;
 
 boolean GraficaP = false;
 boolean Grafica = false;
+boolean GraficaBarras = false;
 
 public  static Vector<Vector<String>> vectorAlumnos = new Vector<>();
 
@@ -158,9 +159,84 @@ public void paint(Graphics g) {
         g.drawString(" "+numeroConDos2DecimalesHombre+"%", 755, 348);
 
 
+    }else if (GraficaBarras == true) {
+    Vector<Vector<String>> vectorAlumnosAsignadosAsignados = CursoPlantillaModuloProfe.vectorAlumnosAsignadosAsignados;
+
+    // Verifica si el vector de datos no está vacío
+    if (vectorAlumnosAsignadosAsignados != null && !vectorAlumnosAsignadosAsignados.isEmpty()) {
+        // Encuentra los cursos más frecuentes y sus frecuencias
+        String[] cursos = new String[vectorAlumnosAsignadosAsignados.size()];
+        int[] frecuencias = new int[vectorAlumnosAsignadosAsignados.size()];
+        int numCursos = 0;
+
+        for (Vector<String> fila : vectorAlumnosAsignadosAsignados) {
+            if (fila.size() > 4) { // Asegúrate de que haya al menos 5 columnas
+                String curso = fila.get(4);
+                int indice = -1;
+
+                // Busca si el curso ya está en el arreglo de cursos
+                for (int i = 0; i < numCursos; i++) {
+                    if (cursos[i].equals(curso)) {
+                        indice = i;
+                        break;
+                    }
+                }
+
+                // Si no se encuentra, agrega el curso al arreglo y establece su frecuencia en 1
+                if (indice == -1) {
+                    cursos[numCursos] = curso;
+                    frecuencias[numCursos] = 1;
+                    numCursos++;
+                } else {
+                    // Si ya existe, incrementa la frecuencia correspondiente
+                    frecuencias[indice]++;
+                }
+            }
+        }
+
+        // Ordena los cursos y frecuencias en orden descendente
+        for (int i = 0; i < numCursos - 1; i++) {
+            for (int j = i + 1; j < numCursos; j++) {
+                if (frecuencias[i] < frecuencias[j]) {
+                    // Intercambia las frecuencias
+                    int tempFrecuencia = frecuencias[i];
+                    frecuencias[i] = frecuencias[j];
+                    frecuencias[j] = tempFrecuencia;
+
+                    // Intercambia los cursos
+                    String tempCurso = cursos[i];
+                    cursos[i] = cursos[j];
+                    cursos[j] = tempCurso;
+                }
+            }
+        }
+
+        // Define las coordenadas y dimensiones de las barras
+        int barraX = 500; // Coordenada X de la primera barra
+        int barraY = 340; // Coordenada Y de las barras
+        int barraAncho = 50; // Ancho de las barras
+        int maxAlturaBarra = 180; // Altura máxima de las barras (ajusta según tus necesidades)
+
+        // Dibuja las tres barras principales
+        for (int i = 0; i < Math.min(3, numCursos); i++) {
+            String curso = cursos[i];
+            int frecuencia = frecuencias[i];
+
+            // Calcula la altura de la barra en función de la frecuencia
+            int barraAltura = (int) ((double) frecuencia / frecuencias[0] * maxAlturaBarra);
+
+            // Dibuja la barra con etiqueta
+            g.setColor(Color.BLUE); // Color de la barra (puedes cambiarlo)
+            g.fillRect(barraX, barraY, barraAncho, barraAltura);
+            g.setColor(Color.BLACK); // Color del texto (puedes cambiarlo)
+            g.drawString(curso, barraX, barraY + barraAltura + 15);
+
+            // Actualiza la coordenada X para la siguiente barra
+            barraX += barraAncho + 20; // Ajusta el espacio entre barras si es necesario
+        }
     }
 }
-   
+}
     public String AbrirCargaProfes(File CargaProfes){
         Vector<Vector<String>> vectorDeDatos = CrearProfe.vectorDatos;   
        String documento = "";
@@ -583,15 +659,15 @@ public class CrearHTMLProfes implements Serializable{
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addContainerGap(265, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         ActualizarTablaCursos.setText("Actualizar Tabla");
@@ -629,34 +705,30 @@ public class CrearHTMLProfes implements Serializable{
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(ActualizarTablaCursos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(LimpiarTablaCursos)
+                        .addGap(18, 18, 18)
+                        .addComponent(ActivarGraficaCursos))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(ActualizarTablaCursos)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(LimpiarTablaCursos)
-                                .addGap(18, 18, 18)
-                                .addComponent(ActivarGraficaCursos)))
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ActualizarCursoBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(CrearCursoBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(CargaMasivaCursoBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                                    .addComponent(EliminarCursoBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(RegresarMenuBoton)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ExportarHTMLCursoBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(22, 22, 22))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(CrearCursoBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ActualizarCursoBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(CargaMasivaCursoBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                            .addComponent(EliminarCursoBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(RegresarMenuBoton)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ExportarHTMLCursoBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -677,16 +749,17 @@ public class CrearHTMLProfes implements Serializable{
                         .addComponent(ExportarHTMLCursoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(RegresarMenuBoton)
-                        .addGap(12, 12, 12)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 20, Short.MAX_VALUE))
+                        .addGap(288, 288, 288)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ActualizarTablaCursos, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                            .addComponent(LimpiarTablaCursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ActivarGraficaCursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ActualizarTablaCursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(LimpiarTablaCursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ActivarGraficaCursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -1059,7 +1132,9 @@ this.dispose();
 
     private void BotonGraficaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonGraficaMouseClicked
     GraficaP = false;
-    Grafica = true; // Desactiva la primera gráfica si es necesario
+    Grafica = true;
+    GraficaBarras = false;
+
     repaint();
 
     }//GEN-LAST:event_BotonGraficaMouseClicked
@@ -1156,6 +1231,11 @@ this.dispose();
 
     private void ActivarGraficaCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActivarGraficaCursosActionPerformed
         // TODO add your handling code here:
+    GraficaBarras = true;
+    Grafica = false; // Desactiva la primera gráfica si es necesario
+    GraficaP = false; // Desactiva la primera gráfica si es necesario
+
+    repaint();
     }//GEN-LAST:event_ActivarGraficaCursosActionPerformed
  
     
@@ -1357,8 +1437,10 @@ Vector<Vector<String>> vectorAlumnos = ModuloAdmin.vectorAlumnos;
     
     private void ActivarGraficaAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActivarGraficaAlumnosActionPerformed
         // TODO add your handling code here:
-GraficaP = true;
+    GraficaBarras = false;
     Grafica = false; // Desactiva la primera gráfica si es necesario
+    GraficaP = true; // Desactiva la primera gráfica si es necesario
+
     repaint();
     }//GEN-LAST:event_ActivarGraficaAlumnosActionPerformed
 public class CrearHTMLAlumno implements Serializable {

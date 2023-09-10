@@ -5,6 +5,7 @@
 package ipc1_2s2023_proyecto1_202203038;
 
 import static ipc1_2s2023_proyecto1_202203038.CrearProfe.vectorDatos;
+import static ipc1_2s2023_proyecto1_202203038.LoginProfesores.vectorParaCrearBotones;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 
@@ -14,11 +15,13 @@ public class ActualizarDatosModuloProfe extends javax.swing.JFrame {
     /**
      * Creates new form ActualizarDatosModuloProfe
      */
-    public ActualizarDatosModuloProfe() {
-        initComponents();
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-    }
+ public ActualizarDatosModuloProfe() { // Usar el argumento 'usuario' en lugar de 'usuarioIngresado'
+    initComponents();
+    this.setLocationRelativeTo(null);
+    this.setResizable(false);
+    
+}
+        Vector<Vector<String>> vectorDeDatos = CrearProfe.vectorDatos;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,6 +48,8 @@ public class ActualizarDatosModuloProfe extends javax.swing.JFrame {
         RegresarBoton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         CodigoActualizadoProfe2 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,7 +79,7 @@ public class ActualizarDatosModuloProfe extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Contraseña");
 
-        GeneroActualizadoProfe2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        GeneroActualizadoProfe2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "f", "m" }));
 
         ActualizarProfeBoton2.setText("Actualizar");
         ActualizarProfeBoton2.addActionListener(new java.awt.event.ActionListener() {
@@ -94,6 +99,24 @@ public class ActualizarDatosModuloProfe extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Nombre");
 
+        CodigoActualizadoProfe2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CodigoActualizadoProfe2ActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("(en correo ingrese nuevamente su correo)");
+
+        jButton1.setBackground(new java.awt.Color(51, 255, 51));
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setText("Ver Datos");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -101,7 +124,6 @@ public class ActualizarDatosModuloProfe extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
@@ -119,15 +141,27 @@ public class ActualizarDatosModuloProfe extends javax.swing.JFrame {
                             .addComponent(ActualizarProfeBoton2, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
                             .addComponent(RegresarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CodigoActualizadoProfe2)
-                            .addComponent(GeneroActualizadoProfe2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(100, Short.MAX_VALUE))
+                            .addComponent(GeneroActualizadoProfe2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)))
+                .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CodigoActualizadoProfe2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -155,7 +189,7 @@ public class ActualizarDatosModuloProfe extends javax.swing.JFrame {
                 .addComponent(ActualizarProfeBoton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(RegresarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -172,94 +206,112 @@ public class ActualizarDatosModuloProfe extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void ActualizarProfeBoton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarProfeBoton2ActionPerformed
-      // Obtener el vector de datos desde CrearProfe
-    Vector<Vector<String>> vectorDeDatos = CrearProfe.vectorDatos;
+        actualizarVectorDeDatos();
+        this.dispose();
+    }//GEN-LAST:event_ActualizarProfeBoton2ActionPerformed
+ private void compararYMostrarDatos() {
+        String usuarioIngresado = CorreoActualizadoProfe2.getText();
+        boolean coincidePosicion4 = false;
 
-    String CodigoNuevoProfe = CodigoActualizadoProfe2.getText();
-    String NombreProfeNuevo = NombreActualizadoProfe2.getText();
-    String ApellidoProfeNuevo = ApellidoActualizadoProfe2.getText();
-    String CorreoProfeNuevo = CorreoActualizadoProfe2.getText();
-    String ContraseñaProfeNuevo = ContrasenaActualizadoProfe2.getText();
-    String GeneroNuevoProfe = (String) GeneroActualizadoProfe2.getSelectedItem();
+        for (Vector<String> fila : vectorParaCrearBotones) {
+            if (fila.size() >= 7 && fila.get(6).equals("Online")) {
+                coincidePosicion4 = true;
+                break;
+            }
+        }
 
-    boolean codigoEncontrado = false;
-
-    // Actualizar los datos en el mismo vectorDeDatos
-    for (Vector<String> fila : vectorDeDatos) {
-        // Verifica que la fila tenga al menos 5 elementos y que ninguno sea nulo
-        if (fila.size() >= 5 &&
-            fila.get(0) != null &&
-            fila.get(1) != null &&
-            fila.get(2) != null &&
-            fila.get(3) != null &&
-            fila.get(4) != null &&
-            fila.get(0).equals(CodigoNuevoProfe)) {
-            fila.set(1, NombreProfeNuevo);
-            fila.set(2, ApellidoProfeNuevo);
-            fila.set(3, CorreoProfeNuevo);
-            fila.set(4, ContraseñaProfeNuevo); // Colocar la contraseña en la posición 4
-            fila.set(5, GeneroNuevoProfe); // Colocar el género en la posición 5
-            codigoEncontrado = true;
-            break; // Si encontramos una coincidencia, salimos del bucle
+        if (coincidePosicion4) {
+            mostrarDatosUsuario(usuarioIngresado);
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontraron datos para el usuario ingresado en modo 'Online'", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    if (codigoEncontrado) {
-        // Limpiar los campos de texto después de guardar
-        CodigoActualizadoProfe2.setText("");
-        NombreActualizadoProfe2.setText("");
-        ApellidoActualizadoProfe2.setText("");
-        CorreoActualizadoProfe2.setText("");
-        ContrasenaActualizadoProfe2.setText("");
-        GeneroActualizadoProfe2.setSelectedIndex(0);
-
-        JOptionPane.showMessageDialog(null, "Datos actualizados correctamente");
-        this.dispose();
-    } else {
-        JOptionPane.showMessageDialog(null, "No existe el código ingresado", "Error", JOptionPane.ERROR_MESSAGE);
+    private void mostrarDatosUsuario(String usuarioIngresado) {
+        for (Vector<String> fila : vectorDeDatos) {
+            if (fila.size() >= 6 && fila.get(3).equals(usuarioIngresado)) {
+                CodigoActualizadoProfe2.setText(fila.get(0)); // Posición 0: Código
+                NombreActualizadoProfe2.setText(fila.get(1)); // Posición 1: Nombre
+                ApellidoActualizadoProfe2.setText(fila.get(2)); // Posición 2: Apellido
+                CorreoActualizadoProfe2.setText(usuarioIngresado); // El usuario ingresado
+                ContrasenaActualizadoProfe2.setText(fila.get(5)); // Posición 5: Contraseña
+                GeneroActualizadoProfe2.setSelectedItem(fila.get(4)); // Posición 4: Género
+                break; // Si encontramos una coincidencia, salimos del bucle
+            }
+        }
     }
-    }//GEN-LAST:event_ActualizarProfeBoton2ActionPerformed
 
+private void actualizarVectorDeDatos() {
+    String usuarioIngresado = CorreoActualizadoProfe2.getText();
+
+    for (Vector<String> fila : vectorDeDatos) {
+        if (fila.size() >= 6 && fila.get(3).equals(usuarioIngresado)) {
+            fila.set(0, CodigoActualizadoProfe2.getText()); // Posición 0: Código
+            fila.set(1, NombreActualizadoProfe2.getText()); // Posición 1: Nombre
+            fila.set(2, ApellidoActualizadoProfe2.getText()); // Posición 2: Apellido
+            fila.set(4, GeneroActualizadoProfe2.getSelectedItem().toString()); // Posición 4: Género
+            fila.set(5, ContrasenaActualizadoProfe2.getText()); // Posición 5: Contraseña
+            // No es necesario actualizar la posición 3, ya que representa el correo (usuarioIngresado)
+            
+            JOptionPane.showMessageDialog(null, "Datos actualizados correctamente");
+            break; // Salir del bucle una vez que se actualice la fila
+        }
+    }
+}
+    
     private void RegresarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarBotonActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_RegresarBotonActionPerformed
 
+    private void CodigoActualizadoProfe2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CodigoActualizadoProfe2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CodigoActualizadoProfe2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+                compararYMostrarDatos();
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ActualizarDatosModuloProfe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ActualizarDatosModuloProfe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ActualizarDatosModuloProfe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ActualizarDatosModuloProfe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+  public static void main(String args[]) {
+    String usuarioIngresado = "NombreDeUsuario"; // Aquí debes asignar el nombre de usuario
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ActualizarDatosModuloProfe().setVisible(true);
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+     * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+     */
+    try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
-        });
+        }
+    } catch (ClassNotFoundException ex) {
+        java.util.logging.Logger.getLogger(ActualizarDatosModuloProfe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (InstantiationException ex) {
+        java.util.logging.Logger.getLogger(ActualizarDatosModuloProfe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex) {
+        java.util.logging.Logger.getLogger(ActualizarDatosModuloProfe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        java.util.logging.Logger.getLogger(ActualizarDatosModuloProfe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
+
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(new Runnable() {
+        public void run() {
+            new ActualizarDatosModuloProfe().setVisible(true); // Pasa el usuarioIngresado como argumento
+        }
+    });
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ActualizarProfeBoton2;
@@ -270,6 +322,7 @@ public class ActualizarDatosModuloProfe extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> GeneroActualizadoProfe2;
     private javax.swing.JTextField NombreActualizadoProfe2;
     private javax.swing.JButton RegresarBoton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -277,6 +330,7 @@ public class ActualizarDatosModuloProfe extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

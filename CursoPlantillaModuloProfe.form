@@ -45,26 +45,29 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="LabelNombreCurso" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="LabelNombreCurso" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="regresarboton" min="-2" pref="100" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jScrollPane1" alignment="0" pref="0" max="32767" attributes="0"/>
                               <Component id="jLabel2" alignment="0" max="-2" attributes="0"/>
                               <Component id="jLabel8" alignment="0" max="-2" attributes="0"/>
-                              <Component id="Top5MejoresEstudiantesboton" alignment="0" pref="309" max="32767" attributes="0"/>
+                              <Component id="Top5MejoresEstudiantesboton" alignment="0" max="32767" attributes="0"/>
                               <Component id="Top5PeoresEstudiantesboton" max="32767" attributes="0"/>
                               <Component id="CargaMasivaAlumnosAsignados" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="actualizarTablaBoton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jScrollPane1" alignment="0" min="-2" pref="318" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
-                                      <Component id="jLabel4" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="AcumuladoLabel" min="-2" pref="71" max="-2" attributes="0"/>
-                                  </Group>
                                   <Component id="jLabel3" max="-2" attributes="0"/>
                                   <Component id="jScrollPane2" pref="424" max="32767" attributes="0"/>
                                   <Component id="jLabel6" max="-2" attributes="0"/>
@@ -73,7 +76,7 @@
                                           <Component id="jLabel11" alignment="0" max="-2" attributes="0"/>
                                           <Component id="jLabel10" alignment="0" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="PonderacionActividadtxtField" max="32767" attributes="0"/>
                                           <Component id="CargacsvNotas" max="32767" attributes="0"/>
@@ -84,14 +87,21 @@
                                           <Component id="jLabel9" alignment="0" max="-2" attributes="0"/>
                                           <Component id="jLabel7" alignment="0" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="NombreActividadtxtField" max="32767" attributes="0"/>
                                           <Component id="DescripcionActividadtxtField" max="32767" attributes="0"/>
+                                          <Component id="NombreActividadtxtField" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                               <Component id="CrearActividadBoton" min="-2" pref="424" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel4" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="AcumuladoLabel" min="-2" pref="71" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="actualizarTablaActividadesBoton" min="-2" pref="115" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -103,7 +113,10 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="LabelNombreCurso" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="LabelNombreCurso" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="regresarboton" alignment="3" max="32767" attributes="0"/>
+                  </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" max="-2" attributes="0"/>
@@ -117,6 +130,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel4" alignment="3" max="-2" attributes="0"/>
                               <Component id="AcumuladoLabel" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="actualizarTablaActividadesBoton" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                           <Component id="jLabel6" max="-2" attributes="0"/>
@@ -146,6 +160,11 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="actualizarTablaBoton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                           <Component id="jLabel8" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                       </Group>
@@ -156,11 +175,11 @@
                       <Component id="Top5MejoresEstudiantesboton" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="CrearActividadBoton" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="Top5PeoresEstudiantesboton" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="Top5PeoresEstudiantesboton" pref="32" max="32767" attributes="0"/>
+                      <Component id="CrearActividadBoton" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="13" max="32767" attributes="0"/>
+                  <EmptySpace pref="14" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -311,7 +330,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="0/0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
@@ -390,26 +408,73 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Seleccionar archivo csv"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CargacsvNotasActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="CrearActividadBoton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Crear Actividad"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CrearActividadBotonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Top5MejoresEstudiantesboton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Top 5 - Estudiantes con mejor rendimiento"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Top5MejoresEstudiantesbotonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Top5PeoresEstudiantesboton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Top 5 - Estudiantes con peor rendimiento"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Top5PeoresEstudiantesbotonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="CargaMasivaAlumnosAsignados">
           <Properties>
             <Property name="text" type="java.lang.String" value="Carga masiva alumnos"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CargaMasivaAlumnosAsignadosActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="regresarboton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Regresar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="regresarbotonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="actualizarTablaBoton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Actualizar tabla"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actualizarTablaBotonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Limpiar tabla"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="actualizarTablaActividadesBoton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Actualizar tabla"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actualizarTablaActividadesBotonActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

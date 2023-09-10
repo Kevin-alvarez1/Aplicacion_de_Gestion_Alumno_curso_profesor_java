@@ -48,6 +48,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         EstudianteLoginBoton.setText("Estudiante");
+        EstudianteLoginBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EstudianteLoginBotonActionPerformed(evt);
+            }
+        });
 
         ProfesorLoginBoton.setText("Profesor");
         ProfesorLoginBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -114,8 +119,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void AdminLoginBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminLoginBotonMouseClicked
         // TODO add your handling code here:
          LoginAdmin ApareceMenuAdmin = new LoginAdmin();
-        ApareceMenuAdmin.setVisible(true);
-        this.dispose();
+            ApareceMenuAdmin.setVisible(true);
+            this.dispose();
 
     }//GEN-LAST:event_AdminLoginBotonMouseClicked
 
@@ -130,9 +135,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
                Vector<Vector<String>> vectorDeDatos = CrearProfe.vectorDatos;
                 LoginProfesores Aparece = new LoginProfesores();
                       Aparece.setVisible(true);
-           this.dispose();
+                this.dispose();
 
     }//GEN-LAST:event_ProfesorLoginBotonActionPerformed
+
+    private void EstudianteLoginBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstudianteLoginBotonActionPerformed
+        // TODO add your handling code here:
+                LoginAlumnoJframe Aparece = new LoginAlumnoJframe();
+                      Aparece.setVisible(true);
+                      this.dispose();
+    }//GEN-LAST:event_EstudianteLoginBotonActionPerformed
 
     /**
      * @param args the command line arguments

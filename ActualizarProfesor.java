@@ -116,6 +116,11 @@ public class ActualizarProfesor extends javax.swing.JFrame {
         });
 
         GeneroActualizadoProfe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "f", "m"}));
+        GeneroActualizadoProfe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GeneroActualizadoProfeActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Regresar al menu anterior");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -271,6 +276,10 @@ public class ActualizarProfesor extends javax.swing.JFrame {
     private void ContrasenaActualizadoProfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContrasenaActualizadoProfeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ContrasenaActualizadoProfeActionPerformed
+
+    private void GeneroActualizadoProfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GeneroActualizadoProfeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GeneroActualizadoProfeActionPerformed
 
     /**
      * @param args the command line arguments
