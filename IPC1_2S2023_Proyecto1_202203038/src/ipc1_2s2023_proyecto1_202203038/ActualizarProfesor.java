@@ -240,8 +240,8 @@ public class ActualizarProfesor extends javax.swing.JFrame implements Serializab
                fila.set(1, NombreProfeNuevo);
                fila.set(2, ApellidoProfeNuevo);
                fila.set(3, CorreoProfeNuevo);
-               fila.set(4, GeneroNuevoProfe); // Colocar el género en la posición 5
-               fila.set(5, ContraseñaProfeNuevo); // Colocar la contraseña en la posición 4
+               fila.set(4, GeneroNuevoProfe); 
+               fila.set(5, ContraseñaProfeNuevo); 
 
                codigoEncontrado = true;
                break; // Si encontramos una coincidencia, salimos del bucle

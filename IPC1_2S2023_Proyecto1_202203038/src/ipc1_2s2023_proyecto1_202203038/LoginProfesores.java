@@ -8,7 +8,6 @@ import static ipc1_2s2023_proyecto1_202203038.CrearCursoFrame.vectorCursos;
 import static ipc1_2s2023_proyecto1_202203038.CrearProfe.vectorDatos;
 import java.util.Vector;
 import javax.swing.JOptionPane;
-import ipc1_2s2023_proyecto1_202203038.Curso;
 import java.io.Serializable;
 
 /**

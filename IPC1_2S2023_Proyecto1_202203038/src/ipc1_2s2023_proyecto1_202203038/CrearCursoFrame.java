@@ -78,6 +78,7 @@ public class CrearCursoFrame extends javax.swing.JFrame implements Serializable 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Profesor:");
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Agregar nuevo curso");
 
@@ -150,7 +151,7 @@ public class CrearCursoFrame extends javax.swing.JFrame implements Serializable 
                 .addComponent(AgregarCursoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(RegresarMenuPBoton)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

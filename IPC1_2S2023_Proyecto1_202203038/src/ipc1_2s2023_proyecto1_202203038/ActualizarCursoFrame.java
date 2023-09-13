@@ -163,34 +163,34 @@ public class ActualizarCursoFrame extends javax.swing.JFrame implements Serializ
     }// </editor-fold>//GEN-END:initComponents
 
     private void ActualizarCursoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarCursoBotonActionPerformed
-        // TODO add your handling code here:
- Vector<Vector<String>> vectorCursos = CrearCursoFrame.vectorCursos;
+            // TODO add your handling code here:
+     Vector<Vector<String>> vectorCursos = CrearCursoFrame.vectorCursos;
 
-String CodigoNuevoCurso = CodigoActualizadoCurso.getText();
-String NombreCursoNuevo = NombreActualizadoCurso.getText();
-String CreditosCursoNuevo = CreditosActualizadoCurso.getText();
-String CursoActualizadoProfe = (String) ProfesorActualizadoCurso.getSelectedItem();
-String alumnoActualizado = "";
-boolean codigoEncontrado = false;
+    String CodigoNuevoCurso = CodigoActualizadoCurso.getText();
+    String NombreCursoNuevo = NombreActualizadoCurso.getText();
+    String CreditosCursoNuevo = CreditosActualizadoCurso.getText();
+    String CursoActualizadoProfe = (String) ProfesorActualizadoCurso.getSelectedItem();
+    String alumnoActualizado = "";
+    boolean codigoEncontrado = false;
 
-// Actualizar los datos en el mismo vectorCursos
-for (Vector<String> fila : vectorCursos) {
-    // Verifica que la fila tenga al menos 5 elementos y que ninguno sea nulo
-    if (fila.size() >= 5 &&
-        fila.get(0) != null &&
-        fila.get(1) != null &&
-        fila.get(2) != null &&
-        fila.get(3) != null &&
-        fila.get(4) != null &&
-        fila.get(0).equals(CodigoNuevoCurso)) {
-        fila.set(1, NombreCursoNuevo);
-        fila.set(2, CreditosCursoNuevo);
-        fila.set(3, alumnoActualizado);
-        fila.set(4, CursoActualizadoProfe);
-        codigoEncontrado = true;
-        break; // Si encontramos una coincidencia, salimos del bucle
+    // Actualizar los datos en el mismo vectorCursos
+    for (Vector<String> fila : vectorCursos) {
+        // Verifica que la fila tenga al menos 5 elementos y que ninguno sea nulo
+        if (fila.size() >= 5 &&
+            fila.get(0) != null &&
+            fila.get(1) != null &&
+            fila.get(2) != null &&
+            fila.get(3) != null &&
+            fila.get(4) != null &&
+            fila.get(0).equals(CodigoNuevoCurso)) {
+            fila.set(1, NombreCursoNuevo);
+            fila.set(2, CreditosCursoNuevo);
+            fila.set(3, alumnoActualizado);
+            fila.set(4, CursoActualizadoProfe);
+            codigoEncontrado = true;
+            break; // Si encontramos una coincidencia, salimos del bucle
+        }
     }
-}
 
 if (codigoEncontrado) {
     // Limpiar los campos de texto después de guardar

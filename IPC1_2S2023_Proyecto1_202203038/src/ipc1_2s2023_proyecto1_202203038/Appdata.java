@@ -38,7 +38,6 @@ import java.util.logging.Logger;
 //si crea el archivo.bin pero no lo llena con nada
 
 public class Appdata {
-    public static Usuario usuarioLogeado;
     public static LinkedList<Vector<Vector<String>>> listaDeVectores = new LinkedList<>();
     public static String rutaUsuariosSerializados = "./DatosSerializados/datosSerializados.bin"; // Ruta relativa al paquete
 
@@ -79,27 +78,23 @@ public static void serializar() {
         ex.printStackTrace();
     }
 }
-public static void deserializar() {
-    try {
-        // Se obtiene un InputStream del archivo utilizando una ruta relativa al paquete
-        InputStream is = Appdata.class.getResourceAsStream(rutaUsuariosSerializados);
-
-        if (is == null) {
-            System.out.println("El archivo de vectores serializados no existe.");
-            return;
+  public static void deserializar() {
+        try {
+            File file = new File(rutaUsuariosSerializados);
+            if (!file.exists()) {
+                return;
+            }
+            FileInputStream fis = new FileInputStream(rutaUsuariosSerializados);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            listaDeVectores = (LinkedList<Vector<Vector<String>>>) ois.readObject();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Appdata.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Appdata.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Appdata.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        // Leer el archivo y cargar los datos en listaDeVectores
-        ObjectInputStream ois = new ObjectInputStream(is);
-        listaDeVectores = (LinkedList<Vector<Vector<String>>>) ois.readObject();
-        ois.close();
-        is.close();
-        System.out.println("Vectores deserializados correctamente.");
-    } catch (IOException | ClassNotFoundException ex) {
-        System.out.println("Ocurrió un error al intentar deserializar los vectores.");
-        ex.printStackTrace();
     }
-}
 }
 
 

@@ -276,7 +276,13 @@ private int contarRepeticiones(Vector<Vector<String>> vectorParaCrearBotones, St
 
 public void contarYMostrarRepeticionesCursos(Vector<Vector<String>> vectorAlumnosAsignadosAsignados, JTable tablaCursosProfe) {
     // Crear un mapa para almacenar el conteo de cursos
-    Map<String, Integer> conteoCursos = new HashMap<>();
+      for (Vector<String> filaCurso : vectorParaCrearBotones) {
+          
+        if (filaCurso.size() >= 7 && "Online".equals(filaCurso.get(6))) {
+               DefaultTableModel modelo = (DefaultTableModel) tablaCursosProfe.getModel();
+                modelo.setRowCount(0); // Elimina todas las filas de la tabla
+
+            Map<String, Integer> conteoCursos = new HashMap<>();
 
     // Iterar sobre el vectorAlumnosAsignadosAsignados y contar repeticiones de cursos
     for (Vector<String> fila : vectorAlumnosAsignadosAsignados) {
@@ -301,6 +307,9 @@ public void contarYMostrarRepeticionesCursos(Vector<Vector<String>> vectorAlumno
 
         // Agregar una fila al modelo de la tabla
         model.addRow(new Object[]{nombreCurso, repeticiones + " Estudiantes"});
+    } 
+            
+        }
     }
 }
 

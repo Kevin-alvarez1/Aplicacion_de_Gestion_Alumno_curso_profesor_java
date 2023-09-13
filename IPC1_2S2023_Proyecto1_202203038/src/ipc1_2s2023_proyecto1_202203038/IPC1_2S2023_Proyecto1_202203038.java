@@ -13,10 +13,11 @@ public class IPC1_2S2023_Proyecto1_202203038 implements Serializable{
 
     public static void main (String[] args) {
         Appdata.deserializar();
+        Appdata.llenarListaDeVectores();    
+
         MenuPrincipal Aparece = new MenuPrincipal();
         Aparece.setVisible(true);
-           
-    
+        
     }
 }
 

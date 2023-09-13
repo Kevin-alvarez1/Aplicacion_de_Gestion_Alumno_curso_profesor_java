@@ -33,7 +33,12 @@ public class AlumnoDesasignarFrame extends javax.swing.JFrame implements Seriali
         cargarDatosEstudiante(codigoEstudiante);
         setLocationRelativeTo(null);
         setResizable(false);
-        
+    codigoAlumnoCursotxt.setEditable(false);
+    nombreAlumnoCursotxt.setEditable(false);
+    apellidoAlumnoCursotxt.setEditable(false);
+    correoAlumnoCursotxt.setEditable(false);
+    contrasenaAlumnoCursotxt.setEditable(false);
+    generoAlumnoCursotxt.setEditable(false);
     cargarImagenEnLabel(labelAlumnoFoto, "https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png", 327, 190);
 
     }

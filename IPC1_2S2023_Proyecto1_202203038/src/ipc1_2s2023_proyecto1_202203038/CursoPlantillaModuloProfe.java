@@ -18,8 +18,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
@@ -618,11 +620,50 @@ private void llenarTablaActividades(String nombreCurso) {
 
     // Actualizar el JLabel con la ponderación acumulada
     AcumuladoLabel.setText(totalPonderacion + " / 100");
+    
+    Set<Double> valoresMostrados = new HashSet<>();
 
-    // Establecer el valor de promedioParaTabla en la columna 4
-    modeloTabla.setValueAt(promedioParaTabla, 0, 3);
+    if (!promediosParaTabla.isEmpty()) {
+
+        List<Double> valoresPorCorrida = new ArrayList<>();
+
+        for (int i = 0; i < promediosParaTabla.size(); i++) {
+            double promedio = promediosParaTabla.get(i);
+
+            // Verificar si el promedio ya se ha mostrado antes
+            if (!valoresMostrados.contains(promedio)) {
+                valoresPorCorrida.add(promedio);
+                valoresMostrados.add(promedio); // Agregar el valor al conjunto
+
+                // Mostrar los valores por corrida
+                StringBuilder fila = new StringBuilder();
+                for (double valor : valoresPorCorrida) {
+                    fila.append(valor).append(", ");
+                }
+                // Quitar la coma y el espacio al final
+                fila.setLength(fila.length() - 2);
+
+                // Agregar el promedio en la columna 4 en el primer espacio vacío
+                boolean agregado = false;
+                for (int j = 0; j < modeloTabla.getRowCount(); j++) {
+                    if (modeloTabla.getValueAt(j, 3) == null) {
+                        modeloTabla.setValueAt(fila.toString(), j, 3);
+                        agregado = true;
+                        break;
+                    }
+                }
+
+                // Si no se agregó en una fila vacía, agregar una nueva fila
+                if (!agregado) {
+                    modeloTabla.addRow(new Object[]{fila.toString()});
+                }
+
+                valoresPorCorrida.clear(); // Limpiar la lista
+            }
+        }
+    }
 }
-public double promedioParaTabla; // Variable pública para almacenar el promedio
+public static Vector<Double> promediosParaTabla = new Vector<>();
 
 public void calcularPromedio(Vector<Vector<String>> vectorAlumnosAsignadosAsignados, Vector<Vector<String>> notasCurso) {
     int numCoincidencias = 0;
@@ -653,9 +694,12 @@ public void calcularPromedio(Vector<Vector<String>> vectorAlumnosAsignadosAsigna
     }
 
     // Calcular el promedio si hubo al menos una coincidencia
-    if (numCoincidencias > 0) {
-        promedioParaTabla = sumaPromedios / numCoincidencias;
-    }
+   if (numCoincidencias > 0) {
+    double promedio = sumaPromedios / numCoincidencias;
+    promediosParaTabla.add(promedio); // Agregar el promedio al vector
+}
+    System.out.println("Promedios");
+    System.out.println(promediosParaTabla);
 }
 
 private void agregarNombreCursoVector(Vector<Vector<String>> vectorAlumnosAsignados, String nombreCurso) {
@@ -786,6 +830,8 @@ private boolean validarPonderacion(String nombreCurso, String ponderacionActivid
 
     private void actualizarTablaActividadesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarTablaActividadesBotonActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel modeloTabla = (DefaultTableModel) TablaActidades.getModel();
+        modeloTabla.setRowCount(0);
         calcularPromedio(alumnosEnCurso, notasCurso);
         llenarTablaActividades(nombreCurso);
 

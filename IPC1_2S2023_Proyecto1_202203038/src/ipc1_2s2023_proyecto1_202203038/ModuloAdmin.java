@@ -60,6 +60,8 @@ FileOutputStream salida;
         @Override
         public void windowClosing(WindowEvent e){
         Appdata.serializar();
+        
+
         }
     });
     }
