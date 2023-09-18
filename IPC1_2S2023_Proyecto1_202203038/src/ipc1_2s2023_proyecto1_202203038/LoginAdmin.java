@@ -173,8 +173,10 @@ public class LoginAdmin extends javax.swing.JFrame implements Serializable {
     }//GEN-LAST:event_AdminContrasenaBarraActionPerformed
 
     private void RegresaralMenuPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresaralMenuPActionPerformed
-        // TODO add your handling code here:
+        MenuPrincipal ApareceMenuAdmin = new MenuPrincipal();
+        ApareceMenuAdmin.setVisible(true);
         this.dispose();
+    
 
     }//GEN-LAST:event_RegresaralMenuPActionPerformed
 
